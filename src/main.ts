@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log("timeout")
                     let resultSet = Search($(that).val())
                     if (resultSet.size === 1) {
-                        const id = resultSet.values().next().value;
+                        const id = (<HTMLInputElement>resultSet.values().next()).value;
                         console.log(id)
                         main(id);
                     }
@@ -60,11 +60,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* start and pick wht is requested on the screen */
         function main(data:String) {
-            const HTML_Element: _search_text_ = document.getElementById("search-text");
+            var _search_text_ = (<HTMLInputElement>document.getElementById("search-text"));
             const _sky_ = document.getElementById("sky");
             _sky_.innerHTML = "";
 
-            const resultSet = Search(_search_text_.value)
+            const resultSet = Search((<HTMLInputElement>_search_text_).value)
 
             fetchData("http://api.openweathermap.org/data/2.5/forecast?id=" + data);
         }
