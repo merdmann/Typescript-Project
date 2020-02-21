@@ -4,7 +4,7 @@
     "description": "css grid poject",
     "main": "index.js",
     "scripts": {
-        "test": "node_modules/.bin/cypress open"
+        "test": "node_modules/.bin/cypress run"
     },
     "author": "",
     "license": "ISC",
