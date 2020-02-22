@@ -5,7 +5,7 @@ describe('Main Page', function() {
 		cy.get("h2").should("contain", "Open Weather App")
 	}) 
 	it('should process the location', function() {
-		cy.get("#search-text").type("Berlin");
+		cy.get("#search-text").type("Berlin - DE");
 
 	})
 })
