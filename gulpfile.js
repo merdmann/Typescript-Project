@@ -59,7 +59,7 @@ function watch() {
 }
 
 
-gulp.task('typescript', run('tsc --outDir ./build --lib "es6,dom" ./src/main.ts'))
+gulp.task('typescript', run('tsc --outDir ./build --target es6 --lib "es6,dom" ./src/main.ts'))
 
 
 

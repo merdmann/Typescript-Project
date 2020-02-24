@@ -1,6 +1,7 @@
-import Cities from "../js/city.js"
-
 'use strict';
+
+import { Cities } from "../js/city.js";
+
 document.addEventListener('DOMContentLoaded', function() {
         console.log("DOMContentLoaded")
         const MS = 1000
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const fqcn = name.split('-');
             const cty = fqcn[0].trim();
             const ctr = typeof fqcn[1] !== 'undefined' ? fqcn[1].trim() : undefined
-
+            
             Cities.forEach(function(city) {
                 if (city.name.toLowerCase() === cty.toLowerCase()) {
                     if (typeof ctr !== 'undefined') { // ctr is set in the sesrch
@@ -115,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // do the per page rendering of the received data
-        function ProcessAndRender(data) {
+    function ProcessAndRender(data) {
             console.log("ProcessAndRender");
             console.log(data);
             let todays = data.list[0].weather[0].description;
