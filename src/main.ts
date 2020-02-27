@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("DOMContentLoaded")
         const MS = 1000
         const MIN = 60;
-        let id = 0;
         const K = 273.15;
 
         /* search by name returns a result set since country names are only uniqe in a country
@@ -31,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             return result
-        }
-        /* wait for input */
+        } /* end of Search */
+        /* install the input handler */
         var timeout = null;
         document.getElementById('search-text').addEventListener('keyup', function() {
             var that = this
@@ -40,8 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearTimeout(timeout);
             }
             var timeout = setTimeout(function() {
-                    console.log("timeout")
-                    let resultSet = Search($(that).val())
+                    console.log("timeout")    
+                    let current = $(that).val()
+                    let resultSet = Search(current)
                     if (resultSet.size === 1) {
                         const id = (<HTMLInputElement>resultSet.values().next()).value;
                         console.log(id)
@@ -63,9 +63,10 @@ document.addEventListener('DOMContentLoaded', function() {
         function main(data:String) {
             var _search_text_ = (<HTMLInputElement>document.getElementById("search-text"));
             const _sky_ = document.getElementById("sky");
-            _sky_.innerHTML = "";
+            _sky_.innerHTML = ""; /* clear the view _sky_*/
 
             const resultSet = Search((<HTMLInputElement>_search_text_).value)
+            console.log("resultSet" + resultSet)
 
             fetchData("http://api.openweathermap.org/data/2.5/forecast?id=" + data);
         }
@@ -117,8 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // do the per page rendering of the received data
     function ProcessAndRender(data) {
-            console.log("ProcessAndRender");
-            console.log(data);
+            console.log("ProcessAndRender data:" + data);
+        
             let todays = data.list[0].weather[0].description;
             const _sky_ = document.getElementById("sky");
 
@@ -174,5 +175,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(err => console.log(err))
         }
 
-        main("");
+        main("nix");
     }) // DOMContentLoaded handler
